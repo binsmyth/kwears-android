@@ -45,8 +45,8 @@ class ProductFragment : Fragment() {
             val productAdapter = ArrayAdapter<String>(productView.context, android.R.layout.simple_list_item_1)
             listView.adapter = productAdapter
             listOfProductId.forEach{src -> productAdapter.add(src)}
-//            val recyclerAdapter = ProductRecyclerViewAdapter(productView.context, it)
-//            productView.adapter = recyclerAdapter
+            val recyclerAdapter = ProductRecyclerViewAdapter(productView.context,listOfProductId)
+            productView.adapter = recyclerAdapter
 //            productView.layoutManager = LinearLayoutManager(productView.context)
         }
         return root
