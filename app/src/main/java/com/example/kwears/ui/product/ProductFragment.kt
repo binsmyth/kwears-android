@@ -31,21 +31,10 @@ class ProductFragment : Fragment() {
 
         _binding = FragmentProductBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val listView: ListView = binding.productList
         val productView: RecyclerView = binding.productRecyclerView
 
         productViewModel.list.observe(viewLifecycleOwner) {
-            val listOfProductId = it.map{
-                    product ->
-                        if(product.images.isNotEmpty())
-                            product.images[0].src
-                        else
-                            "N/A"
-            }
-            val productAdapter = ArrayAdapter<String>(productView.context, android.R.layout.simple_list_item_1)
-            listView.adapter = productAdapter
-            listOfProductId.forEach{src -> productAdapter.add(src)}
-            val recyclerAdapter = ProductRecyclerViewAdapter(productView.context,listOfProductId)
+            val recyclerAdapter = ProductRecyclerViewAdapter(productView.context,it)
             productView.adapter = recyclerAdapter
 //            productView.layoutManager = LinearLayoutManager(productView.context)
         }

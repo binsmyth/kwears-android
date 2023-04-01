@@ -7,27 +7,15 @@
     android:layout_height="wrap_content"
     tools:context=".ui.product.ProductFragment">
 
-    <ListView
-        android:id="@+id/productList"
-        android:layout_width="351dp"
-        android:layout_height="283dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productRecyclerView"
-        android:layout_width="349dp"
-        android:layout_height="365dp"
+        android:layout_width="346dp"
+        android:layout_height="709dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/productList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="16"
-        tools:listitem="@layout/product_recycler_view_row"/>
+        tools:listitem="@layout/product_recycler_view_row" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
