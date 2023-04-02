@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
+import coil.load
 import com.example.kwears.R
 import com.example.kwears.data.WcResponse
-import com.example.kwears.databinding.FragmentProductBinding
 
 class ProductRecyclerViewAdapter(context:Context, productList:List<WcResponse>) :
     RecyclerView.Adapter<ProductRecyclerViewAdapter.MyViewHolder>() {
@@ -26,7 +25,7 @@ class ProductRecyclerViewAdapter(context:Context, productList:List<WcResponse>) 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // grabbing the views from our recycler_view_row layout file
         // Kinda like in the onCreate method
-        private var imageView : ImageView = itemView.findViewById(R.id.productImageView)
+        var imageView : ImageView = itemView.findViewById(R.id.productImageView)
         var productTextView : TextView = itemView.findViewById(R.id.productNameTextView)
     }
 
@@ -45,7 +44,11 @@ class ProductRecyclerViewAdapter(context:Context, productList:List<WcResponse>) 
         // assigning values to the views we created in the recycler
         // based on the position of the recycler view
         Log.d("debug onBindViewHOlder", ourProductList.toString())
-        holder.productTextView.text = ourProductList[position].id
+        holder.productTextView.text = ourProductList[position].name
+        if (ourProductList[position].images.isNotEmpty())
+            holder.imageView.load(ourProductList[position].images[0].src)
+        else
+            holder.imageView.load(R.drawable.baseline_broken_image_24)
     }
 
     override fun getItemCount(): Int {

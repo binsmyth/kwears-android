@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kwears.databinding.FragmentProductBinding
@@ -36,7 +37,7 @@ class ProductFragment : Fragment() {
         productViewModel.list.observe(viewLifecycleOwner) {
             val recyclerAdapter = ProductRecyclerViewAdapter(productView.context,it)
             productView.adapter = recyclerAdapter
-//            productView.layoutManager = LinearLayoutManager(productView.context)
+            productView.layoutManager = GridLayoutManager(productView.context,2)
         }
         return root
     }
