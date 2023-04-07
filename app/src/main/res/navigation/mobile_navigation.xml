@@ -21,10 +21,27 @@
         android:id="@+id/navigation_notifications"
         android:name="com.example.kwears.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+        <argument android:name="name" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_product"
         android:name="com.example.kwears.ui.product.ProductFragment"
         android:label="ProductFragment"
-        tools:layout="@layout/fragment_product" />
+        tools:layout="@layout/fragment_product" >
+        <action
+            android:id="@+id/action_navigation_product_to_navigation_productitem"
+            app:destination="@id/navigation_productitem" />
+        <argument android:name="name" />
+        <argument android:name="imageSrc"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_productitem"
+        android:name="com.example.kwears.ui.productitem.ProductItemFragment"
+        android:label="ProductItemFragment"
+        tools:layout="@layout/fragment_productitem">
+        <argument android:name="name" />
+        <argument android:name="image_src" />
+    </fragment>
 </navigation>

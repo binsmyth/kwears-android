@@ -6,13 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kwears.data.WcResponse
 import com.example.kwears.network.getApiData
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ProductViewModel : ViewModel() {
-    val gson = Gson()
    private val _text = MutableLiveData<List<WcResponse>>().apply{
        getApiData()?.enqueue(object : Callback<List<WcResponse>> {
            override fun onResponse(call: Call<List<WcResponse>>, response: Response<List<WcResponse>>) {

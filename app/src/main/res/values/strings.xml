@@ -6,4 +6,10 @@
     <string name="title_product">Product</string>
     <string name="productImageContentDescription">This shows each image of kwears</string>
     <string name="Not_Available">N/A</string>
+    <string name="edit">Edit</string>
+    <string name="favorite">Favorite</string>
+    <string name="more">more</string>
+    <string name="content_description_more">Contend Description More</string>
+    <string name="content_description_favorite">Content Description Favorite</string>
+    <string name="content_description_search">Content Description Search</string>
 </resources>
