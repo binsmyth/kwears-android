@@ -1,36 +1,30 @@
 package com.example.kwears.ui.product
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.kwears.data.WcResponse
-import com.example.kwears.network.getApiData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.example.kwears.data.ProductDataSource
+import com.example.kwears.data.repository.ProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ProductViewModel : ViewModel() {
-   private val _text = MutableLiveData<List<WcResponse>>().apply{
-       getApiData()?.enqueue(object : Callback<List<WcResponse>> {
-           override fun onResponse(call: Call<List<WcResponse>>, response: Response<List<WcResponse>>) {
-               Log.v("debug-dataResponse", response.body().toString())
-               if (response.isSuccessful) {
-                   value = response.body()
-                   Log.v("success", (response.body() is List<WcResponse>).toString())
-                   // do something with the users list
-               } else {
-                   // handle error response
-                   Log.v("Call success but response error", response.toString())
-               }
-           }
-           override fun onFailure(call: Call<List<WcResponse>>, t: Throwable) {
-               // handle failure
-               Log.v("Call unsuccessful",t.toString())
-           }
+@HiltViewModel
+class ProductViewModel @Inject constructor(private val repo:ProductRepository): ViewModel() {
+    val productPager = Pager(
+        PagingConfig(pageSize=10)
+    ){
+        ProductDataSource(repo)
+    }.flow.cachedIn(viewModelScope)
 
-       })
-   }
-//    val text: LiveData<String> = _text
-    val list: LiveData<List<WcResponse>> = _text
+
+
+
+//    private val _list = MutableLiveData<MutableList<WcResponse>?>()
+//    val list: MutableLiveData<MutableList<WcResponse>?> = _list
+//
+//    suspend fun getApiProduct(page:Int=2,cred:String = credential){
+//        _list.value =  Api.getClient().getProduct(page, cred)
+//    }
 }
