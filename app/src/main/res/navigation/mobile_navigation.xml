@@ -7,26 +7,26 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.kwears.ui.home.HomeFragment"
+        android:name="com.vineet.kwears.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.kwears.ui.dashboard.DashboardFragment"
+        android:name="com.vineet.kwears.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.kwears.ui.notifications.NotificationsFragment"
+        android:name="com.vineet.kwears.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" >
         <argument android:name="name" />
     </fragment>
     <fragment
         android:id="@+id/navigation_product"
-        android:name="com.example.kwears.ui.product.ProductFragment"
+        android:name="com.vineet.kwears.ui.product.ProductFragment"
         android:label="ProductFragment"
         tools:layout="@layout/fragment_product" >
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_productitem"
-        android:name="com.example.kwears.ui.productitem.ProductItemFragment"
+        android:name="com.vineet.kwears.ui.productitem.ProductItemFragment"
         android:label="ProductItemFragment"
         tools:layout="@layout/fragment_productitem">
         <argument android:name="name" />
