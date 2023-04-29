@@ -10,13 +10,14 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/productCardView"
         android:layout_width="200dp"
-        android:layout_height="230dp"
+        android:layout_height="270dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/productRowConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp"
@@ -25,51 +26,61 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/productImageView"
-                android:layout_width="match_parent"
-                android:layout_height="134dp"
+                android:layout_width="175dp"
+                android:layout_height="106dp"
                 android:adjustViewBounds="false"
                 android:contentDescription="@string/productImageContentDescription"
-                android:scaleType="centerCrop"
                 android:padding="5dp"
-                app:shapeAppearanceOverlay="@style/customRoundedImageView"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.213"
+                app:shapeAppearanceOverlay="@style/customRoundedImageView"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-            <TextView
-                android:id="@+id/productSalePriceTextView"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/Not_Available"
-                android:textStyle="italic"
-                android:textSize="@dimen/text_size_20"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.01"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productImageView"
-                app:layout_constraintVertical_bias="0.156" />
-
             <TextView
                 android:id="@+id/productNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="28dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/Not_Available"
-                android:textSize="@dimen/text_size_20"
 
+                android:textSize="@dimen/text_size_20"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.021"
+                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productSalePriceTextView"
-                app:layout_constraintVertical_bias="0.222" />
+                app:layout_constraintTop_toBottomOf="@+id/productImageView"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <TextView
+                android:id="@+id/productSalePriceTextView"
+                android:layout_width="36dp"
+                android:layout_height="28dp"
+                android:text="@string/Not_Available"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.506"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productNameTextView"
+                app:layout_constraintVertical_bias="0.149" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_to_cart_button"
+                android:layout_width="180dp"
+                android:layout_height="45dp"
+                android:text="@string/add_to_cart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productSalePriceTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

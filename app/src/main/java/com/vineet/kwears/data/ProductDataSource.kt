@@ -2,9 +2,10 @@ package com.vineet.kwears.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.vineet.kwears.data.database.dataentity.WcResponse
 import com.vineet.kwears.data.repository.ProductRepository
 
-class ProductDataSource(private val repo: ProductRepository):PagingSource<Int,WcResponse>(){
+class ProductDataSource(private val repo: ProductRepository):PagingSource<Int, WcResponse>(){
     override fun getRefreshKey(state: PagingState<Int, WcResponse>): Int? {
         return state.anchorPosition?.let { position ->
             val page = state.closestPageToPosition(position)

@@ -12,4 +12,7 @@
     <string name="content_description_more">Contend Description More</string>
     <string name="content_description_favorite">Content Description Favorite</string>
     <string name="content_description_search">Content Description Search</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="title_activity_cart">CartActivity</string>
+    <string name="hello">Hello</string>
 </resources>

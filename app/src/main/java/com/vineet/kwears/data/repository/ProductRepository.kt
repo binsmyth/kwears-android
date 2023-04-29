@@ -1,6 +1,6 @@
 package com.vineet.kwears.data.repository
 
-import com.vineet.kwears.data.WcResponse
+import com.vineet.kwears.data.database.dataentity.WcResponse
 
 interface ProductRepository{
     suspend fun getProducts(page:Int,creds:String):MutableList<WcResponse>
