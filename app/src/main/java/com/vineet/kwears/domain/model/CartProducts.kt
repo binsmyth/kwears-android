@@ -1,4 +1,6 @@
-package com.vineet.kwears.data.database.dataentity
+package com.vineet.kwears.domain.model
+
+import com.vineet.kwears.data.database.dataentity.Source
 
 data class CartProducts(
     val cartProductCount:Int,

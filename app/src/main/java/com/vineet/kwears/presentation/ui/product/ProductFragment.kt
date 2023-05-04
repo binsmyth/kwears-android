@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.withTransaction
 import com.vineet.kwears.data.database.AppDatabase
+import com.vineet.kwears.data.database.dataentity.AddToCart
 import com.vineet.kwears.databinding.FragmentProductBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -43,13 +44,15 @@ class ProductFragment : Fragment() {
         val viewModel by viewModels<ProductViewModel>()
         //Click Listener for Add To Cart: Adding products to cart
         val addToCartButtonListener = OnClickListener{
+            //Add products to cart database
             val database = AppDatabase.getDatabase(binding.root.context)
             val addToCartProductDao = database.addCartProductDao()
             lifecycleScope.launch{
                 database.withTransaction {
-                    addToCartProductDao.insertAddToCartProducts(it)
+                    addToCartProductDao.insertOrUpdateCart(it.productId)
                 }
             }
+
         }
         val pagingAdapter = ProductRecyclerViewAdapter(addToCartButtonListener,ProductDiffCallback)
 

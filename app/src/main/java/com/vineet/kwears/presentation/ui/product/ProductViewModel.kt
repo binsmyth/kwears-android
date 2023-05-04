@@ -11,7 +11,7 @@ import com.vineet.kwears.data.ProductDataSource
 import com.vineet.kwears.data.database.AppDatabase
 import com.vineet.kwears.data.database.ProductRemoteMediator
 import com.vineet.kwears.data.network.Api
-import com.vineet.kwears.data.repository.ProductRepository
+import com.vineet.kwears.data.network.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

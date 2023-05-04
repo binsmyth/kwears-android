@@ -5,6 +5,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.vineet.kwears.data.TestResponse
 import com.vineet.kwears.data.database.dataentity.WcResponse
 import com.vineet.kwears.data.baseurl
+import com.vineet.kwears.data.network.dto.productdto.ProductDto
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,8 +16,11 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface Api{
-    @GET("/wordpress//wp-json/wc/v3/products")
+    @GET("/wordpress/wp-json/wc/v3/products")
     suspend fun getProduct(@Query("page")page:Int?,@Header("Authorization")cred:String):MutableList<WcResponse>
+
+    @GET("/wordpress/wp-json/wc/v3/products")
+    suspend fun getAllProducts(@Query("page")page:Int?,@Header("Authorization")cred:String):MutableList<ProductDto>
 
     @GET("/wordpress/wp-json/wc/v3")
     suspend fun testApi():List<TestResponse>

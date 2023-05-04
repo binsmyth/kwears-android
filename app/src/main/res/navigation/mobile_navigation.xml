@@ -65,6 +65,14 @@
         android:id="@+id/navigation_cart"
         android:name="com.vineet.kwears.presentation.ui.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_navigation_cart_to_checkoutActivity"
+            app:destination="@id/checkoutActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/checkoutActivity"
+        android:name="com.vineet.kwears.presentation.ui.checkout.CheckoutActivity"
+        android:label="CheckoutActivity" />
 
 </navigation>
