@@ -28,14 +28,14 @@ class ProductRecyclerViewAdapter(private val clickListener:OnClickListener, diff
             //itemView is inherited field from super class of viewholder
             private var imageView : ImageView = itemView.findViewById(R.id.productImageView)
             private var productTextView : TextView = itemView.findViewById(R.id.productNameTextView)
-            private var salePriceTextView:TextView = itemView.findViewById((R.id.productSalePriceTextView))
+            private var priceTextView:TextView = itemView.findViewById((R.id.productSalePriceTextView))
             var addToCartButton:Button = itemView.findViewById(R.id.add_to_cart_button)
 
             //This is used to bind the ui to the fetched data
             fun bind(item: WcResponse){
                 //bind all product ui items in recyclerview
                 productTextView.text = item.name
-                salePriceTextView.text = item.sale_price
+                priceTextView.text = item.price
                 if (item.images.isNotEmpty()) {
                     Glide
                         .with(imageView.context)

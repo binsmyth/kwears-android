@@ -9,6 +9,7 @@ import okhttp3.Credentials
 const val username = "ck_a6ea0f0b1c7ffdecc6be81e256aa8c894498dfc0"
 const val password = "cs_c97b38d3365200fbf71be26552366a5c5411e777"
 const val baseurl = "https://192.168.1.102:8443"
+const val fakebaseurl = "https://fakestoreapi.com/"
 
 //const val credentials = username + ":" + password
 //Creating a basic credentials for woocommerce api

@@ -6,6 +6,10 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.squareup.moshi.Json
 
+data class Source(
+    @Json(name="src")
+    val src:String
+)
 @Entity(tableName = "WcResponse")
 @TypeConverters
 data class WcResponse(
@@ -21,9 +25,11 @@ data class WcResponse(
     val images:List<Source>,
     @ColumnInfo(name="sale_price")
     @Json(name="sale_price")
-    val sale_price:String
+    val sale_price:String,
+    @ColumnInfo(name="price")
+    @Json(name="price")
+    val price:String
 )
-data class Source(
-    @Json(name="src")
-    val src:String
-)
+
+
+

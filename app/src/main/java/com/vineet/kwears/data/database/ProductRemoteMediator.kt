@@ -7,6 +7,8 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.vineet.kwears.data.database.dataentity.WcResponse
 import com.vineet.kwears.data.credential
+import com.vineet.kwears.data.database.dataentity.FakeWcResponse
+import com.vineet.kwears.data.database.dataentity.Source
 import com.vineet.kwears.data.network.Api
 import retrofit2.HttpException
 import java.io.IOException
@@ -41,7 +43,9 @@ class ProductRemoteMediator (
                 }
             }
             val response =  Api.getProduct(loadKey, credential)
-
+//            val response =  Api.getProduct(loadKey).map{a -> a.toWcResponse()}
+//            val pictures = listOf(Source("https://picsum.photos/200/300"))
+//            val newResponse = response.map{WcResponse(it.id,it.name,pictures,"",it.price.toString())}.toMutableList()
             database.withTransaction {
                 if(loadType == LoadType.REFRESH){
                     productDao.insertAllProducts(response)

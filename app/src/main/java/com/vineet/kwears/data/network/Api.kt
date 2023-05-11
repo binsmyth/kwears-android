@@ -5,7 +5,10 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.vineet.kwears.data.TestResponse
 import com.vineet.kwears.data.database.dataentity.WcResponse
 import com.vineet.kwears.data.baseurl
+import com.vineet.kwears.data.database.dataentity.FakeWcResponse
+import com.vineet.kwears.data.fakebaseurl
 import com.vineet.kwears.data.network.dto.productdto.ProductDto
+import com.vineet.kwears.data.network.dto.shippingmethodsdto.ShippingMethodsDto
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,21 +16,31 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface Api{
     @GET("/wordpress/wp-json/wc/v3/products")
     suspend fun getProduct(@Query("page")page:Int?,@Header("Authorization")cred:String):MutableList<WcResponse>
 
+//    @GET("/products")
+//    suspend fun getProduct(@Query("page")page:Int?):MutableList<FakeWcResponse>
+
+    @POST("/wordpress/wp-json/wc/v3/orders")
+    suspend fun createOrder()
+
+    @GET("/wordpress/wp-json/wc/v3/shipping_methods")
+    suspend fun getShippingMethods(@Header("Authorization")cred:String):List<ShippingMethodsDto>
+
     @GET("/wordpress/wp-json/wc/v3/products")
-    suspend fun getAllProducts(@Query("page")page:Int?,@Header("Authorization")cred:String):MutableList<ProductDto>
+    suspend fun getAllProducts(@Header("Authorization")cred:String):MutableList<ProductDto>
 
     @GET("/wordpress/wp-json/wc/v3")
     suspend fun testApi():List<TestResponse>
 
     companion object {
         private lateinit var data: Api
-        fun buildMoshi(): Moshi {
+        private fun buildMoshi(): Moshi {
             return Moshi.Builder()
                 .add(KotlinJsonAdapterFactory())
                 .build()

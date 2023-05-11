@@ -10,8 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.withTransaction
+import com.vineet.kwears.data.credential
 import com.vineet.kwears.data.database.AppDatabase
 import com.vineet.kwears.data.database.dataentity.AddToCart
+import com.vineet.kwears.data.network.Api
 import com.vineet.kwears.databinding.FragmentProductBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
