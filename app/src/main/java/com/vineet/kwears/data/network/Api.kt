@@ -3,21 +3,20 @@ package com.vineet.kwears.data.network
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.vineet.kwears.data.TestResponse
-import com.vineet.kwears.data.database.dataentity.WcResponse
 import com.vineet.kwears.data.baseurl
-import com.vineet.kwears.data.database.dataentity.FakeWcResponse
-import com.vineet.kwears.data.fakebaseurl
+import com.vineet.kwears.data.database.dataentity.WcResponse
+import com.vineet.kwears.data.network.dto.allshippingmethodsfromzonedto.AllShippingMethodsFromZoneDto
+import com.vineet.kwears.data.network.dto.paymentgatewaysdto.PaymentGatewaysDto
 import com.vineet.kwears.data.network.dto.productdto.ProductDto
+import com.vineet.kwears.data.network.dto.shippingmethodfromshippingzonedto.ShippingZoneFromShippingMethod
 import com.vineet.kwears.data.network.dto.shippingmethodsdto.ShippingMethodsDto
+import com.vineet.kwears.data.network.dto.shippingzonesdto.ShippingZonesDto
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface Api{
     @GET("/wordpress/wp-json/wc/v3/products")
@@ -26,11 +25,28 @@ interface Api{
 //    @GET("/products")
 //    suspend fun getProduct(@Query("page")page:Int?):MutableList<FakeWcResponse>
 
+    //Getting all shipping zones
+    @GET("/wordpress/wp-json/wc/v3/shipping/zones")
+    suspend fun getShippingZones(@Header("Authorization")cred:String):List<ShippingZonesDto>
+
+    //For listing all payment gateways
+    @GET("wordpress/wp-json/wc/v3/payment_gateways")
+    suspend fun getPaymentGateways(@Header("Authorization")cred:String):List<PaymentGatewaysDto>
+
+    //For creating orders
     @POST("/wordpress/wp-json/wc/v3/orders")
     suspend fun createOrder()
 
+    //Get all shipping zone
     @GET("/wordpress/wp-json/wc/v3/shipping_methods")
     suspend fun getShippingMethods(@Header("Authorization")cred:String):List<ShippingMethodsDto>
+
+    //Get all shipping method in a shipping zone
+    @GET("/wordpress/wp-json/wc/v3/shipping/zones/{zoneid}/methods")
+    suspend fun getAllShippingMethodsOfZone(@Header("Authorization")cred:String, @Path("zoneid")zoneId:Int?):List<AllShippingMethodsFromZoneDto>
+    //Get a shipping method detail in a shipping zone
+    @GET("/wordpress/wp-json/wc/v3/shipping/zones/{zoneid}/methods/{methodid}")
+    suspend fun getMethodOfZone(@Header("Authorization")cred:String,@Path("zoneid")zoneId:String,@Path("methodid")methodId:String):ShippingZoneFromShippingMethod
 
     @GET("/wordpress/wp-json/wc/v3/products")
     suspend fun getAllProducts(@Header("Authorization")cred:String):MutableList<ProductDto>
