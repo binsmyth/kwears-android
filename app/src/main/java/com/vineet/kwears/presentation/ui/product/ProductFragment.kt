@@ -3,12 +3,14 @@ package com.vineet.kwears.presentation.ui.product
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.withTransaction
 import com.vineet.kwears.data.credential
 import com.vineet.kwears.data.database.AppDatabase
@@ -44,6 +46,16 @@ class ProductFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //To show paging products
         val viewModel by viewModels<ProductViewModel>()
+        println("productFragment")
+        lifecycleScope.launch {
+            try{
+                Api.getClient().getAllProducts(credential)
+            }
+            catch(e:Exception){
+                println(e)
+            }
+
+        }
         //Click Listener for Add To Cart: Adding products to cart
         val addToCartButtonListener = OnClickListener{
             //Add products to cart database
@@ -59,7 +71,7 @@ class ProductFragment : Fragment() {
         val pagingAdapter = ProductRecyclerViewAdapter(addToCartButtonListener,ProductDiffCallback)
 
         val recyclerView = binding.productRecyclerView
-        recyclerView.layoutManager = GridLayoutManager(binding.productRecyclerView.context, 2)
+        recyclerView.layoutManager = GridLayoutManager(binding.productRecyclerView.context,2)
         recyclerView.adapter = pagingAdapter
 
         lifecycleScope.launch{

@@ -28,7 +28,10 @@ class ProductRemoteMediator (
         state: PagingState<Int, WcResponse>
     ): MediatorResult {
         val productDao = database.productDao()
+
         return try{
+            println("try is working")
+            println(loadType)
             val loadKey = when(loadType){
                 LoadType.REFRESH ->
                         null
@@ -42,7 +45,11 @@ class ProductRemoteMediator (
                     lastItem.id
                 }
             }
+            println("when")
+            println(Api.getAllProducts(credential))
             val response =  Api.getProduct(loadKey, credential)
+            println("getting response")
+            println(response)
 //            val response =  Api.getProduct(loadKey).map{a -> a.toWcResponse()}
 //            val pictures = listOf(Source("https://picsum.photos/200/300"))
 //            val newResponse = response.map{WcResponse(it.id,it.name,pictures,"",it.price.toString())}.toMutableList()

@@ -1,11 +1,11 @@
-package com.vineet.kwears.data.network.dto.shippingmethodfromshippingzonedto
+package com.vineet.kwears.data.network.dto.shippingmethoddetailsfromzonedto
 
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ShippingZoneFromShippingMethod(
+data class ShippingMethodDetailsFromZoneDto(
     @Json(name = "enabled")
     val enabled: Boolean,
     @Json(name = "instance_id")

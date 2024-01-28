@@ -1,5 +1,6 @@
 package com.vineet.kwears.presentation.ui.product
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,8 @@ class ProductRecyclerViewAdapter(private val clickListener:OnClickListener, diff
 
             //This is used to bind the ui to the fetched data
             fun bind(item: WcResponse){
+                println("item")
+                println(item)
                 //bind all product ui items in recyclerview
                 productTextView.text = item.name
                 priceTextView.text = item.price

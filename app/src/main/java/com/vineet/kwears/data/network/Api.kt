@@ -6,17 +6,22 @@ import com.vineet.kwears.data.TestResponse
 import com.vineet.kwears.data.baseurl
 import com.vineet.kwears.data.database.dataentity.WcResponse
 import com.vineet.kwears.data.network.dto.allshippingmethodsfromzonedto.AllShippingMethodsFromZoneDto
+import com.vineet.kwears.data.network.dto.createorderresponsedto.CreateOrderResponseDto
+import com.vineet.kwears.data.network.dto.orderdto.OrderDto
 import com.vineet.kwears.data.network.dto.paymentgatewaysdto.PaymentGatewaysDto
 import com.vineet.kwears.data.network.dto.productdto.ProductDto
-import com.vineet.kwears.data.network.dto.shippingmethodfromshippingzonedto.ShippingZoneFromShippingMethod
+import com.vineet.kwears.data.network.dto.shippingmethoddetailsfromzonedto.ShippingMethodDetailsFromZoneDto
 import com.vineet.kwears.data.network.dto.shippingmethodsdto.ShippingMethodsDto
 import com.vineet.kwears.data.network.dto.shippingzonesdto.ShippingZonesDto
+import com.vineet.kwears.domain.model.CreateOrderPaymentMethod
 import okhttp3.Interceptor
+import okhttp3.OkHttp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
+import javax.net.ssl.HostnameVerifier
 
 interface Api{
     @GET("/wordpress/wp-json/wc/v3/products")
@@ -35,7 +40,7 @@ interface Api{
 
     //For creating orders
     @POST("/wordpress/wp-json/wc/v3/orders")
-    suspend fun createOrder()
+    suspend fun createOrder(@Header("Authorization")cred:String, @Body order:OrderDto):CreateOrderResponseDto
 
     //Get all shipping zone
     @GET("/wordpress/wp-json/wc/v3/shipping_methods")
@@ -46,7 +51,7 @@ interface Api{
     suspend fun getAllShippingMethodsOfZone(@Header("Authorization")cred:String, @Path("zoneid")zoneId:Int?):List<AllShippingMethodsFromZoneDto>
     //Get a shipping method detail in a shipping zone
     @GET("/wordpress/wp-json/wc/v3/shipping/zones/{zoneid}/methods/{methodid}")
-    suspend fun getMethodOfZone(@Header("Authorization")cred:String,@Path("zoneid")zoneId:String,@Path("methodid")methodId:String):ShippingZoneFromShippingMethod
+    suspend fun getShippingMethodDetailsOfZone(@Header("Authorization")cred:String,@Path("zoneid")zoneId:Int?,@Path("methodid")methodId:Int?): ShippingMethodDetailsFromZoneDto
 
     @GET("/wordpress/wp-json/wc/v3/products")
     suspend fun getAllProducts(@Header("Authorization")cred:String):MutableList<ProductDto>
@@ -62,7 +67,6 @@ interface Api{
                 .build()
         }
         fun getClient(): Api {
-
             //A logging plugin for retrofit
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
@@ -85,7 +89,6 @@ interface Api{
                 .addNetworkInterceptor(apInterceptor)
                 .addNetworkInterceptor(logging)
                 .build()
-
             data = Retrofit.Builder()
                 .client(client)
                 .baseUrl(baseurl)

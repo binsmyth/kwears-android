@@ -2,7 +2,9 @@ package com.vineet.kwears
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.vineet.kwears.data.network.Api
 import com.vineet.kwears.presentation.ui.product.ProductDiffCallback
+import kotlinx.coroutines.runBlocking
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,5 +23,12 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.vineet.kwears", appContext.packageName)
+    }
+    @Test
+    fun testWcApi(){
+        val api = runBlocking {
+            Api.getClient().testApi()
+        }
+        println(api)
     }
 }

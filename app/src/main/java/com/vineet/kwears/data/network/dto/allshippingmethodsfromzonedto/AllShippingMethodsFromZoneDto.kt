@@ -29,7 +29,8 @@ data class AllShippingMethodsFromZoneDto(
     fun toAllShippingMethodsFromZone():AllShippingMethodsFromZone{
         return AllShippingMethodsFromZone(
             ShippingMethodId = instanceId,
-            ShippingTitle = title
+            ShippingTitle = title,
+            cost = settings.cost?.value
         )
     }
 

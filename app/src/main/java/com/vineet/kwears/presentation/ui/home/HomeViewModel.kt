@@ -10,4 +10,7 @@ class HomeViewModel : ViewModel() {
         value="Hello"
     }
     val text: LiveData<String> = _text
+    fun goToSignUp(){
+
+    }
 }

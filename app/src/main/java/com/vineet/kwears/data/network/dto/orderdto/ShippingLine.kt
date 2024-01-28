@@ -7,9 +7,9 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class ShippingLine(
     @Json(name = "method_id")
-    val methodId: String,
+    val methodId: String?,
     @Json(name = "method_title")
-    val methodTitle: String,
+    val methodTitle: String?,
     @Json(name = "total")
-    val total: String
+    val total: String?
 )

@@ -1,11 +1,11 @@
-package com.vineet.kwears.data.network.dto.shippingmethodfromshippingzonedto
+package com.vineet.kwears.data.network.dto.shippingmethoddetailsfromzonedto
 
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Title(
+data class Cost(
     @Json(name = "default")
     val default: String,
     @Json(name = "description")

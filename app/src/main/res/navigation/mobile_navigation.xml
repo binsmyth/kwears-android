@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_cart"
             app:destination="@id/navigation_cart" />
+        <action
+            android:id="@+id/action_navigation_home_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
 
     <fragment
@@ -66,13 +69,12 @@
         android:name="com.vineet.kwears.presentation.ui.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" >
-        <action
-            android:id="@+id/action_navigation_cart_to_checkoutActivity"
-            app:destination="@id/checkoutActivity" />
     </fragment>
-    <activity
-        android:id="@+id/checkoutActivity"
-        android:name="com.vineet.kwears.presentation.ui.checkout.CheckoutActivity"
-        android:label="CheckoutActivity" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.vineet.kwears.presentation.ui.signup.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
+
 
 </navigation>

@@ -46,12 +46,14 @@ class   MainActivity : AppCompatActivity() {
                 R.id.navigation_notifications,
                 R.id.navigation_product,
                 R.id.navigation_productitem,
-                R.id.navigation_cart
+                R.id.navigation_cart,
+                R.id.signUpFragment
+
             )
         )
         //This manually replaces default action bar with material appbar
         setSupportActionBar(binding.topAppBar)
-        addMenuProvider(MenuProvider(binding,this, Activity()))
+        addMenuProvider(MenuProvider(binding,this))
         binding.topAppBar.setOnMenuItemClickListener{menuItem->
             when (menuItem.itemId){
                 R.id.cart ->{
@@ -92,11 +94,10 @@ class   MainActivity : AppCompatActivity() {
     }
 }
 
-private class MenuProvider(activityMainBinding: ActivityMainBinding, lifecycleOwner: LifecycleOwner, a:Activity):androidx.core.view.MenuProvider{
+private class MenuProvider(activityMainBinding: ActivityMainBinding, lifecycleOwner: LifecycleOwner):androidx.core.view.MenuProvider{
 
     val activityMainBinding  = activityMainBinding
     val lifecycleOwner = lifecycleOwner
-    val a = a
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.top_app_bar, menu)
     }

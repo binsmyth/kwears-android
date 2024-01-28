@@ -11,5 +11,5 @@ data class LineItem(
     @Json(name = "quantity")
     val quantity: Int,
     @Json(name = "variation_id")
-    val variationId: Int
+    val variationId: Int?
 )

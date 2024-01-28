@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
-import androidx.compose.material3.Divider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -28,8 +25,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.room.withTransaction
 import coil.compose.AsyncImage
 import com.vineet.kwears.data.database.dataentity.AddToCart
-import com.vineet.kwears.domain.model.CartProducts
 import com.vineet.kwears.databinding.FragmentCartBinding
+import com.vineet.kwears.domain.model.CartProducts
 import com.vineet.kwears.presentation.ui.checkout.Checkout
 import kotlinx.coroutines.launch
 
@@ -46,7 +43,7 @@ class CartFragment : Fragment() {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 val navController = rememberNavController()
-                NavHost(navController, startDestination = "cart"){
+                NavHost(navController, startDestination = "cart", Modifier.fillMaxSize()){
                     composable("cart"){Cart(navController)}
                     composable("checkout"){Checkout()}
                 }
@@ -69,11 +66,13 @@ class CartFragment : Fragment() {
             }
         }
         MaterialTheme{
-           Column {
                 LazyColumn(
-                    modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+
                 ) {
+                    println("CartFragment")
+                    println(addedProducts)
                     if (addedProducts?.isNotEmpty() == true) {
                         items(addedProducts.size) { index ->
                             Row {
@@ -83,16 +82,18 @@ class CartFragment : Fragment() {
                             Divider(color = Color.DarkGray)
                         }
                     }
-                }
-               Box{
-                   Button(onClick = {
-                        navController.navigate("checkout")
-                   }) {
-                       Text(text = "Go To Checkout")
-                   }
-               }
-            }
+                    item{
+                        Button(
+                            onClick = {
+//                                view?.findNavController()?.navigate(com.vineet.kwears.R.id.action_navigation_cart_to_checkoutFragment)
+                                navController.navigate("checkout")
+                            },
 
+                            ) {
+                            Text(text = "Go To Checkout")
+                        }
+                    }
+                }
         }
     }
 
@@ -104,9 +105,8 @@ class CartFragment : Fragment() {
                 .getEachCartProductCount(cartProducts[index].productId)
                 .observeAsState()
                 .value
-
         AsyncImage(
-            model = cartProducts[index].productImages[0].src,
+            model = if (cartProducts[index].productImages.isNotEmpty()) cartProducts[index].productImages[0].src else "https://placehold.co/200",
             modifier= Modifier
                 .height(100.dp)
                 .width(100.dp),

@@ -1,4 +1,4 @@
-package com.vineet.kwears.data.network.dto.shippingmethodfromshippingzonedto
+package com.vineet.kwears.data.network.dto.shippingmethoddetailsfromzonedto
 
 
 import com.squareup.moshi.Json

@@ -2,9 +2,11 @@ package com.vineet.kwears.data.network.repository
 
 import com.vineet.kwears.data.database.dataentity.WcResponse
 import com.vineet.kwears.data.network.dto.allshippingmethodsfromzonedto.AllShippingMethodsFromZoneDto
+import com.vineet.kwears.data.network.dto.createorderresponsedto.CreateOrderResponseDto
+import com.vineet.kwears.data.network.dto.orderdto.OrderDto
 import com.vineet.kwears.data.network.dto.paymentgatewaysdto.PaymentGatewaysDto
 import com.vineet.kwears.data.network.dto.productdto.ProductDto
-import com.vineet.kwears.data.network.dto.shippingmethodfromshippingzonedto.ShippingZoneFromShippingMethod
+import com.vineet.kwears.data.network.dto.shippingmethoddetailsfromzonedto.ShippingMethodDetailsFromZoneDto
 import com.vineet.kwears.data.network.dto.shippingmethodsdto.ShippingMethodsDto
 import com.vineet.kwears.data.network.dto.shippingzonesdto.ShippingZonesDto
 
@@ -22,8 +24,11 @@ interface ProductRepository{
     suspend fun getShippingZones(creds:String):List<ShippingZonesDto>
 
     //For getting particular shipping methods from particular zone
-    suspend fun getMethodOfZone(creds:String,zoneId:String,methodId:String):ShippingZoneFromShippingMethod
+    suspend fun getShippingMethodDetailsOfZone(creds:String,zoneId:Int?,methodId:Int?):ShippingMethodDetailsFromZoneDto
 
     //For getting shipping zone methods
     suspend fun getAllShippingMethodFromZone(creds:String,zoneId:Int):List<AllShippingMethodsFromZoneDto>
+
+    //Create an order
+    suspend fun createOrder(creds:String,order:OrderDto):CreateOrderResponseDto
 }
